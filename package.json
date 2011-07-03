@@ -1,0 +1,19 @@
+{
+  "author": "wookiehangover <sam@quickleft.com>",
+  "name": "jquery-tmpl-jst",
+  "description": "precompile jquery templates with a cake file",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "github.com:wookiehangover/jquery-tmpl-jst.git"
+  },
+  "engines": {
+    "node": "~0.4.8"
+  },
+  "dependencies": {
+    "jquery": "~1.5.1",
+    "coffee-script": "~1.1.1"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/wookiehangover/jquery-tmpl-jst"
+}
