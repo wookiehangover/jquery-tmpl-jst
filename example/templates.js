@@ -1,3 +1,3 @@
-(function($,window){ var JST = {}; JST.sample = function anonymous(jQuery,$item) {
-var $=jQuery,call,__=[],$data=$item.data;with($data){__.push('<h1>');if(typeof(title)!=='undefined' && (title)!=null){__.push($.encode((typeof(title)==='function'?(title).call($item):(title))));}__.push('</h1> <p>This is a sample template</p>');}return __;
-}; window.JST = JST; })(jQuery,window);
+(function($){ var JST = {}; JST.sample = function(d){ var t =function anonymous(jQuery,$item) {
+var $=jQuery,call,__=[],$data=$item.data;with($data){__.push('<h1>');if(typeof(title)!=='undefined' && (title)!=null){__.push($.encode((typeof(title)==='function'?(title).call($item):(title))));}__.push('</h1> <p>This is a sample template</p> ');if((typeof(foo)!=='undefined' && (foo)!=null) && (typeof(foo)==='function'?(foo).call($item):(foo))){__.push('   ');if(typeof(foo)!=='undefined' && (foo)!=null){$.each((typeof(foo)==='function'?(foo).call($item):(foo)),function($index, $value){with(this){__.push('     <div>');if(typeof(value)!=='undefined' && (value)!=null){__.push($.encode((typeof(value)==='function'?(value).call($item):(value))));}__.push('</div>   ');}});}__.push(' ');}__.push('');}return __;
+};return $.tmpl(t,d);}; window.JST = JST; })(jQuery);

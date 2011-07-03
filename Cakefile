@@ -1,5 +1,4 @@
 fs     = require 'fs'
-{exec} = require 'child_process'
 util   = require 'util'
 $      = require './lib/jquery.tmpl.js'
 
@@ -14,7 +13,7 @@ task 'watch', 'Watch prod source files and build changes', ->
   for file in templates then do (file) ->
     fs.watchFile "#{templatesDir}/#{file}", (curr, prev) ->
       if +curr.mtime isnt +prev.mtime
-          util.log "Saw change in #{templatesDir}/#{file}"
+        util.log "Saw change in #{templatesDir}/#{file}"
 
 task 'build', 'Pre compile jQuery Templates', ->
   templates = fs.readdirSync(templatesDir)
@@ -22,21 +21,22 @@ task 'build', 'Pre compile jQuery Templates', ->
   data = []
 
   for tmpl, index in templates then do (tmpl, index) ->
-    fs.readFile "#{templatesDir}/#{tmpl}" , 'utf8'
-          , (err, fileContents) ->
-        handleError(err) if err
-        nm = tmpl.split('.')[0]
-        tmp = [
-          "JST.#{nm} = "
-          $.template(null, fileContents)
-          ";"
-        ]
+    # read in each template
+    fs.readFile "#{templatesDir}/#{tmpl}" , 'utf8', (err, fileContents) ->
+      handleError(err) if err
+      nm = tmpl.split('.')[0]
+      # build JST function
+      tmp = [
+        "JST.#{nm} = function(d){ var t ="
+        $.template(null, fileContents)
+        ";return $.tmpl(t,d);};"
+      ]
 
-        data[index] = tmp.join('')
-        process( data ) if --remaining is 0
+      data[index] = tmp.join('')
+      process( data ) if --remaining is 0
 
   process = ( data )->
-    fileData = "(function($,window){ var JST = {}; #{ data.join('\n\n') } window.JST = JST; })(jQuery,window);"
+    fileData = "(function($){ var JST = {}; #{ data.join('\n\n') } window.JST = JST; })(jQuery);"
 
     fs.writeFile  "#{targetDir}/templates.js", fileData, 'utf8', (err) ->
       handleError(err) if err
