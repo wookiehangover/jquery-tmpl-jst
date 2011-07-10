@@ -8,10 +8,10 @@
     "url": "github.com:wookiehangover/jquery-tmpl-jst.git"
   },
   "engines": {
-    "node": "~0.4.8"
+    "node": "~0.4.9"
   },
   "dependencies": {
-    "jquery": "~1.5.1",
+    "jquery": "~1.6.2",
     "coffee-script": "~1.1.1"
   },
   "devDependencies": {},

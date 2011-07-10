@@ -42,7 +42,28 @@ task 'build', 'Pre compile jQuery Templates', ->
       handleError(err) if err
       util.log "#{targetDir}/templates.js written"
 
+task 'build:dev', 'adds common js module support to jquery-tmpl', ->
+  files = ["lib/head.js", "vendor/jquery-tmpl/jquery.tmpl.js"]
+  data = []
+
+  for file, index in files then do (file, index)->
+
+    fs.readFile file, 'utf8', (err, fileContents) ->
+      handleError(err) if err
+      data[index] = fileContents
+
+      process( data.join('') ) if index is files.length - 1
+
+  process = ( data ) ->
+    fs.writeFile "lib/jquery.tmpl.js", data, 'utf8', (err) ->
+      handleError(err) if err
+      util.log "lib/jquery.tmpl.js written"
+
+
 handleError = (error) -> 
     util.log error
     displayNotification error
+
+
+
 
