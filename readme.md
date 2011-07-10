@@ -31,6 +31,13 @@ And it's final usage would look something like this:
 
       $('body').html( compiled_template );
 
+## jquery-tmpl as a Node Module
+
+jquery-tmpl is now included as a submodule. In order to execute
+templates in Node, I needed to add common js module support to
+jquery-tmpl. This step is now included as a build step in the Cakefile,
+and outputs to `lib/jquery.tmpl.js`.
+
 ## Contributing
 
 This is a need-based project, so I only wrote it to account for my
