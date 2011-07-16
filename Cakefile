@@ -34,7 +34,6 @@ task 'build', 'Pre compile jQuery Templates', ->
 
         for s in [0..subs.length] by 2
           name = if subs[s-1]? then "#{nm}_#{subs[s-1]}" else nm
-          console.log build( name, subs[s] )
           data[index] += build( name, subs[s] )
 
       else
