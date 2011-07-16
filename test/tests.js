@@ -5,9 +5,15 @@ test("creates a global JST object",function(){
   ok(window.JST);
 });
 
-test("sample template should exist",function(){
+test("creates static templates object",function(){
   expect(1);
+  ok(window.JST.templates);
+});
+
+test("sample template should exist",function(){
+  expect(2);
   ok(window.JST.sample);
+  ok(window.JST.templates.sample);
 });
 
 module("sample template");
@@ -21,4 +27,15 @@ test("template should compile as expected", function(){
   equals( content.find('div').length, 3);
 });
 
+
+module("multiple templates");
+
+test("should created sub templates", function(){
+  expect(4);
+
+  ok(window.JST.multiple);
+  ok(window.JST.multiple_header);
+  ok(window.JST.multiple_footer);
+  ok(window.JST.multiple_foo_bar);
+});
 
