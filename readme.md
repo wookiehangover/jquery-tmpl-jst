@@ -1,8 +1,40 @@
-# jquery-tmpl-jst
+# JST for jQuery Templates
 
-A cakefile that pre-compiles jQuery Templates into a single file.
+jquery-tmpl-jst: Pre-compiled jQuery Templates with Node.js
 
-Run `npm install` to install all necessary dependencies.
+## Install with NPM
+The best / easiest way to start using jquery-tmpl-jst is to install it
+with npm, which looks something like this: `npm install jquery-tmpl-jst`
+
+Be sure to use the `--global` option if you'd like to use the command
+line tool.
+
+## Basic usage
+
+Incant jquery-tmpl-jst into your application with a require statement,
+and jquery-tmpl-just will expose 2 functions: `build` and `process`
+
+    var tmpl = require('tmpl');
+
+    // Builds a template string
+    tmpl.build( 'path/to/my/templates', function( output ){
+
+      // Creates a file called templates.js
+      tmpl.process( output, 'path/to/output/dir' );
+    });
+
+Build creates a string of executable javascript from a directory of
+templates. It accepts the location of your templates and a callback
+function.
+
+Process creates a file called `templates.js` in the specified target
+directory. It accepts a template string and a the target location.
+
+## Using as a Cakefile
+
+Since this is really meant to be used as a build tool, a Cakefile is
+included as well, but keep in mind that _coffee-script must be included
+as a dependency in order to use the Cakefile_.
 
 Modify the Cakefile's `targetDir` and `templateDir` variables to point
 to you desired build location and the location of your templates,
@@ -12,31 +44,68 @@ Run `cake build` or `cake watch` from the root of your project to
 generate the compiled templates. `cake watch` will listen for changes in
 your templates directory and run the build process on demand.
 
-The file generated creates a `window.JST` object and depends on jQuery and
-jquery.tmpl. Each file in your templates directory has been transformed
-into a function attached to `window.JST.{you_filename}`.
+## JST Output
 
-## Usage
+To start using the compiled templates, just include `templates.js`. Keep
+in mind that these are just your templates, so you'll also need jQuery
+and jQuery-tmpl in there too.
 
-For convenience, the precompiled function takes the form of
+`templates.js` creates a global object called `window.JST`.
 
-      window.JST.FILE_NAME = function( data ){
-        return $.tmpl( $.template( YOUR_TEMPLATE ), data );
+The `JST` object includes a `templates` object containing all of your
+precompiled templates. Helper methods for easier usage are attached
+directly to the `JST` object, which is structured like this:
+
+    JST
+      .templates
+        <template_name>
+        <template_name_2>
+        ...
+      <template_name>()
+      <template_name_2>()
+      ...
+
+The helper methods are meant to make using templates as easy as
+possible, so they are functions that take JSON data to be templated as
+the only argument.
+
+The functions themselves look like this:
+
+      JST.<file_name> = function( data ){
+        return $.tmpl( JST.template.<file_name>, data );
       }
 
 And it's final usage would look something like this:
 
       var data = { title: "foobar" },
-          compiled_template = window.JST.example( my_data );
+          compiled_template = window.JST.sample_template( my_data );
 
       $('body').html( compiled_template );
 
-## jquery-tmpl as a Node Module
 
-jquery-tmpl is now included as a submodule. In order to execute
-templates in Node, I needed to add common js module support to
-jquery-tmpl. This step is now included as a build step in the Cakefile,
-and outputs to `lib/jquery.tmpl.js`.
+## Multiple Named Templates from a single file
+
+Add as many sub-templates as you want to a single JST file by writing a
+c-style comment with the sub-template name.
+
+    multiple_templates.JST
+    ---
+    <hi>Nothing to see here</h1>
+
+    /* foo */
+    <h2>{foo}</h2>
+    <p>Check out this other awesome template<p>
+
+This file will product 2 templates (and 2 corresponding helper
+functions):
+
+    JST:
+      multiple_templates
+      multiple_templates_foo
+      templates:
+        multiple_templates
+        multiple_templates_foo
+
 
 ## Contributing
 
