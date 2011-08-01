@@ -14,6 +14,7 @@ task 'watch', 'Watch prod source files and build changes', ->
     fs.watchFile "#{templatesDir}/#{file}", (curr, prev) ->
       if +curr.mtime isnt +prev.mtime
         util.log "Saw change in #{templatesDir}/#{file}"
+        invoke 'build'
 
 task 'build', 'Pre compile jQuery Templates', ->
   templates = fs.readdirSync(templatesDir)
@@ -73,11 +74,6 @@ task 'build:dev', 'adds common js module support to jquery-tmpl', ->
       handleError(err) if err
       util.log "lib/jquery.tmpl.js written"
 
-
 handleError = (error) -> 
     util.log error
     displayNotification error
-
-
-
-
