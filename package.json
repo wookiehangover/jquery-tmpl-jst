@@ -1,7 +1,7 @@
 {
   "author": "wookiehangover <sam@quickleft.com>",
   "name": "jquery-tmpl-jst",
-  "description": "precompile jquery templates with a cake file",
+  "description": "Pre-compiled jQuery Templates",
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -11,8 +11,7 @@
     "node": "~0.4.9"
   },
   "dependencies": {
-    "jquery": "~1.6.2",
-    "coffee-script": "~1.1.1"
+    "jquery": "~1.6.2"
   },
   "devDependencies": {
     "jasmine-node": "~1.0.6"
