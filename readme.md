@@ -14,7 +14,7 @@ line tool.
 Incant jquery-tmpl-jst into your application with a require statement,
 and jquery-tmpl-just will expose 2 functions: `build` and `process`
 
-    var tmpl = require('tmpl');
+    var tmpl = require('jquery-tmpl-jst');
 
     // Builds a template string
     tmpl.build( 'path/to/my/templates', function( output ){
