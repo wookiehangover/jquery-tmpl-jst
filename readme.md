@@ -56,14 +56,16 @@ The `JST` object includes a `templates` object containing all of your
 precompiled templates. Helper methods for easier usage are attached
 directly to the `JST` object, which is structured like this:
 
-    JST
-      .templates
-        <template_name>
-        <template_name_2>
-        ...
-      <template_name>()
-      <template_name_2>()
+    JST = {
+      <template_name>,
+      <template_name_2>,
       ...
+      templates: {
+        <template_name>,
+        <template_name_2>,
+        ...
+      }
+    }
 
 The helper methods are meant to make using templates as easy as
 possible, so they are functions that take JSON data to be templated as
@@ -99,12 +101,14 @@ c-style comment with the sub-template name.
 This file will product 2 templates (and 2 corresponding helper
 functions):
 
-    JST:
-      multiple_templates
-      multiple_templates_foo
-      templates:
+    JST = {
+      multiple_templates,
+      multiple_templates_foo,
+      templates: {
         multiple_templates
         multiple_templates_foo
+      }
+    }
 
 
 ## Contributing
