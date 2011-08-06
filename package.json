@@ -2,7 +2,7 @@
   "author": "wookiehangover <sam@quickleft.com>",
   "name": "jquery-tmpl-jst",
   "description": "Pre-compiled jQuery Templates",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "github.com:wookiehangover/jquery-tmpl-jst.git"
