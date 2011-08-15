@@ -1,3 +1,7 @@
+###
+  Here's the example Cakefile for jquery-tmpl-jst.
+  Feel free to use it anywhere!
+###
 fs     = require 'fs'
 util   = require 'util'
 tmpl   = require './lib/index.js'
@@ -20,6 +24,23 @@ task 'build', 'Pre compile jQuery Templates', ->
   tmpl.build templatesDir, ( data ) ->
     tmpl.process( data, targetDir )
 
+handleError = (error) -> 
+    util.log error
+    displayNotification error
+###
+  End Sample Cakefile
+###
+
+
+
+
+
+
+
+###
+  This is used to concat a custom build of the jquery-tmpl submodule,
+  and its output is committed
+###
 task 'build:dev', 'adds common js module support to jquery-tmpl', ->
   files = ["lib/head.js", "vendor/jquery-tmpl/jquery.tmpl.js"]
   data = []
@@ -37,6 +58,3 @@ task 'build:dev', 'adds common js module support to jquery-tmpl', ->
       handleError(err) if err
       util.log "lib/jquery.tmpl.js written"
 
-handleError = (error) -> 
-    util.log error
-    displayNotification error

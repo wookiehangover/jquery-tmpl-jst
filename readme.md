@@ -30,6 +30,16 @@ function.
 Process creates a file called `templates.js` in the specified target
 directory. It accepts a template string and a the target location.
 
+## CLI usage
+
+jquery-tmpl-jst also comes with a command line tool, which you can use
+like this:
+
+    $ tmpl path/to/templates path/to/save
+
+This creates the file `templates.js` to the target directory. If no
+arguments are passed, the current path will be used instead.
+
 ## Using as a Cakefile
 
 Since this is really meant to be used as a build tool, a Cakefile is
