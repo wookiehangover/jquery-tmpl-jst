@@ -8,7 +8,7 @@
     "url": "github.com:wookiehangover/jquery-tmpl-jst.git"
   },
   "engines": {
-    "node": "~0.4.9"
+    "node": ">=0.4.7"
   },
   "dependencies": {
     "jquery": "~1.6.2"
