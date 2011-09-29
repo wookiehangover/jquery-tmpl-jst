@@ -2,7 +2,7 @@
   "author": "wookiehangover <sam@quickleft.com>",
   "name": "jquery-tmpl-jst",
   "description": "Pre-compiled jQuery Templates",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": {
     "type": "git",
     "url": "github.com:wookiehangover/jquery-tmpl-jst.git"
@@ -11,7 +11,7 @@
     "node": ">=0.4.7"
   },
   "dependencies": {
-    "jqtpl": "~1.0.6"
+    "jqtpl": "git://github.com/wookiehangover/node-jqtpl.git"
   },
   "devDependencies": {
     "jasmine-node": "~1.0.6"
