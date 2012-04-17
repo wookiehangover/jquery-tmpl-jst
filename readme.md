@@ -102,7 +102,7 @@ c-style comment with the sub-template name.
 
     multiple_templates.JST
     ---
-    <hi>Nothing to see here</h1>
+    <h1>Nothing to see here</h1>
 
     /* foo */
     <h2>{foo}</h2>
